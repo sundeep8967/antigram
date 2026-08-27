@@ -1,0 +1,14 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment & Config files with tokens
+.env
+.DS_Store
+
+# Build artifacts and DMG
+build_mac/
+dist_mac/
+*.dmg
+*.log
