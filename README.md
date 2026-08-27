@@ -1,48 +1,50 @@
-# ⚡ OpenClaw + Google Antigravity (Gemini 3.7 / 2.0 Quota Bridge)
+# ⚡ Antigram
 
-This workspace bridges **OpenClaw** to your **Google Antigravity environment**, allowing OpenClaw to run autonomous workflows, web scraping, and tool orchestration using your **Gemini 3.7 / 2.0 Thinking quotas**.
+> **Direct Telegram Gateway & Remote Live Touchpad for Google Antigravity IDE**
+
+Antigram connects **Telegram** directly to **Google Antigravity IDE**, allowing full remote control, task prompting, live screen streaming, and interactive remote touch / mouse trackpad control from anywhere in the world.
 
 ---
 
-## 🏛️ Architecture
+## 🌟 Key Features
+
+1. **📱 Two-Way Telegram Control**: Send prompts, trigger workflows, get real-time transcript updates, and accept actions directly inside Telegram.
+2. **📺 Live Low-Latency Screen Mirror**: Ultra-smooth desktop stream accessible securely via phone browser or Mini App.
+3. **🖱️ Mac Trackpad Remote**: 
+   - 1-finger swipe to move cursor smoothly
+   - 1-finger tap to Left-Click
+   - 2-finger tap to Right-Click
+   - 2-finger swipe to Scroll Up / Down
+4. **☕ Keep Awake (Caffeinate)**: Built-in background service preventing Mac standby/sleep while you're away.
+5. **🍏 Native macOS App & DMG Installer**: Complete standalone desktop application and menu bar companion.
+
+---
+
+## 🚀 Quick Start
+
+### 1. Launch the Telegram Gateway
+```bash
+python3 telegram_bot.py
+```
+
+### 2. Launch the Live Screen Mirror Server
+```bash
+python3 screen_mirror.py
+```
+
+### 3. Build & Install DMG
+```bash
+bash build_dmg.sh
+```
+
+---
+
+## 🛠️ Architecture
 
 ```mermaid
-graph LR
-    OpenClaw[OpenClaw Agent / Gateway] 
-    -->|OpenAI-Compatible /v1 API| Proxy[Antigravity Quota Proxy :9099]
-    Proxy -->|Gemini 3.7 / 2.0 Quota| GoogleAGY[Antigravity Backend]
-    OpenClaw -->|MCP Client| MCP[Antigravity MCP Tools]
-```
-
----
-
-## 🚀 Active Setup & Endpoints
-
-- **Proxy URL**: `http://127.0.0.1:9099/v1`
-- **Models Available**:
-  - `gemini-3.7-flash` *(Default - High Reasoning & Fast Token Generation)*
-  - `gemini-3.7-pro` *(Complex Coding & Architectural Analysis)*
-  - `gemini-2.0-flash-thinking-exp-01-21` *(Deep Reasoning with Thinking Tokens)*
-  - `gemini-2.0-flash` *(High-Throughput Scraping & Automation)*
-
----
-
-## ⚙️ Running OpenClaw with this Setup
-
-### 1. Run OpenClaw with the configuration:
-```bash
-openclaw run "Your task here" --config /Users/apple/Desktop/anto/openclaw-antigravity-bridge/openclaw.json
-```
-
-### 2. Point any OpenAI-compatible tool to this proxy:
-```bash
-export OPENAI_BASE_URL="http://127.0.0.1:9099/v1"
-export OPENAI_API_KEY="sk-antigravity-local-quota"
-```
-
-### 3. Verification Test:
-```bash
-curl -X POST http://127.0.0.1:9099/v1/chat/completions \
-  -H "Content-Type: application/json" \
-  -d '{"model": "gemini-3.7-flash", "messages": [{"role": "user", "content": "Explain quantum computing briefly"}]}'
+graph TD
+    Telegram[📱 Telegram Mobile / Web] 
+    -->|Bot API / Webhook| Gateway[⚡ Antigram Bot Gateway]
+    Gateway -->|Automated Input / IPC| IDE[💻 Google Antigravity IDE]
+    Mirror[📺 Live Stream & Trackpad] -->|MJPEG & Touch /input| MacScreen[🖥️ macOS Desktop & PyAutoGUI]
 ```
